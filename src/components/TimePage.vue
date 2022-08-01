@@ -1,11 +1,39 @@
 <template>
-  <div class="body">
-    <!-- Navigation -->
-    <div class="navbar" id="navbar">
-      <a href="index.html">Time</a>
-      <a href="stopwatch.html">Stopwatch</a>
+  <!-- Navigation -->
+  <div class="navbar" id="navbar">
+    <a href="index.html">Time</a>
+    <a href="stopwatch.html">Stopwatch</a>
+  </div>
+  <!-- End Navigation -->
+
+  <div class="container-fluid main">
+    <h3 class="mb-4">Time is running</h3>
+    <!-- Content -->
+    <div class="container col-8 content d-flex justify-content-around align-items-center">
+      <div class="col-3 boxTime">
+        <p id="hours">00</p>
+      </div>
+      <p>:</p>
+      <div class="col-3 boxTime">
+        <p id="minutes">00</p>
+      </div>
+      <p>:</p>
+      <div class="col-3 boxTime">
+        <p id="seconds">00</p>
+      </div>
     </div>
-    <!-- End Navigation -->
+    <!-- End Content -->
+
+    <!-- Full Screen -->
+    <div class="container col-2 d-flex mt-4 text-center">
+      <div class="circle mx-auto">
+        <i class="fa-solid fa-expand expand" id="fullScreen"></i>
+      </div>
+      <div class="circle mx-auto">
+        <i class="fa-solid fa-compress expand" id="smallScreen"></i>
+      </div>
+    </div>
+    <!-- End Full Screen -->
   </div>
 </template>
 
@@ -13,14 +41,58 @@
 export default {
   name: 'TimePage'
 }
+const currentTime = () => {
+  var hours = document.getElementById("hours");
+  var minutes = document.getElementById("minutes");
+  var seconds = document.getElementById("seconds");
+
+  let date = new Date();
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
+  
+  hh = hh < 10 ? `0${hh}` : hh;
+  mm = mm < 10 ? `0${mm}` : mm;
+  ss = ss < 10 ? `0${ss}` : ss;
+
+  hours.innerHTML = hh;
+  minutes.innerHTML = mm;
+  seconds.innerHTML = ss;
+  
+  let mySound = new Audio('sound/tick.wav');
+  mySound.play();
+};
+
+currentTime();
+setInterval(currentTime, 1000);
+
+// var elem = document.documentElement;
+// var fullScreen = document.getElementById("fullScreen");
+// var smallScreen = document.getElementById("smallScreen");
+// fullScreen.onclick = () => {
+//   if (elem.requestFullscreen) {
+//     elem.requestFullscreen();
+//   } else if (elem.webkitRequestFullscreen) { /* Safari */
+//     elem.webkitRequestFullscreen();
+//   } else if (elem.msRequestFullscreen) { /* IE11 */
+//     elem.msRequestFullscreen();
+//   }
+//   document.getElementById("navbar").style.display = "none";
+// }
+// smallScreen.onclick = () => {
+//   if (document.exitFullscreen) {
+//     document.exitFullscreen();
+//   } else if (document.webkitExitFullscreen) { /* Safari */
+//     document.webkitExitFullscreen();
+//   } else if (document.msExitFullscreen) { /* IE11 */
+//     document.msExitFullscreen();
+//   }
+//   document.getElementById("navbar").style.display = "block";
+// }
 </script>
 
+
 <style>
-.body {
-  background-image: url("../assets/bg-1.jpg");
-  background-size: cover;
-  height: 100vh;
-}
 .navbar {
   position: absolute;
   left: 6%;
@@ -36,6 +108,10 @@ export default {
   color: grey;
 }
 .main {
+  background-image: url("../assets/bg-1.jpg");
+  background-size: cover;
+  /* background-position: center; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
