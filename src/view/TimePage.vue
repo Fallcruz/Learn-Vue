@@ -1,8 +1,8 @@
 <template>
   <!-- Navigation -->
   <div class="navbar" id="navbar">
-    <a href="index.html">Time</a>
-    <a href="stopwatch.html">Stopwatch</a>
+    <a href="#">Time</a>
+    <a href="#">Stopwatch</a>
   </div>
   <!-- End Navigation -->
 
@@ -25,14 +25,14 @@
     <!-- End Content -->
 
     <!-- Full Screen -->
-    <div class="container col-2 d-flex mt-4 text-center">
+    <!-- <div class="container col-2 d-flex mt-4 text-center">
       <div class="circle mx-auto">
         <i class="fa-solid fa-expand expand" id="fullScreen"></i>
       </div>
       <div class="circle mx-auto">
         <i class="fa-solid fa-compress expand" id="smallScreen"></i>
       </div>
-    </div>
+    </div> -->
     <!-- End Full Screen -->
   </div>
 </template>
@@ -66,29 +66,6 @@ const currentTime = () => {
 currentTime();
 setInterval(currentTime, 1000);
 
-// var elem = document.documentElement;
-// var fullScreen = document.getElementById("fullScreen");
-// var smallScreen = document.getElementById("smallScreen");
-// fullScreen.onclick = () => {
-//   if (elem.requestFullscreen) {
-//     elem.requestFullscreen();
-//   } else if (elem.webkitRequestFullscreen) { /* Safari */
-//     elem.webkitRequestFullscreen();
-//   } else if (elem.msRequestFullscreen) { /* IE11 */
-//     elem.msRequestFullscreen();
-//   }
-//   document.getElementById("navbar").style.display = "none";
-// }
-// smallScreen.onclick = () => {
-//   if (document.exitFullscreen) {
-//     document.exitFullscreen();
-//   } else if (document.webkitExitFullscreen) { /* Safari */
-//     document.webkitExitFullscreen();
-//   } else if (document.msExitFullscreen) { /* IE11 */
-//     document.msExitFullscreen();
-//   }
-//   document.getElementById("navbar").style.display = "block";
-// }
 </script>
 
 
