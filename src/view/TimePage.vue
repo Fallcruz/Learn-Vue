@@ -10,64 +10,60 @@
     <h3 class="mb-4">Time is running</h3>
     <!-- Content -->
     <div class="container col-8 content d-flex justify-content-around align-items-center">
-      <div class="col-3 boxTime">
+      <div class="col-3 boxTime py-md-4 py-2">
         <p id="hours">00</p>
       </div>
       <p>:</p>
-      <div class="col-3 boxTime">
+      <div class="col-3 boxTime py-md-4 py-2">
         <p id="minutes">00</p>
       </div>
       <p>:</p>
-      <div class="col-3 boxTime">
+      <div class="col-3 boxTime py-md-4 py-2">
         <p id="seconds">00</p>
       </div>
     </div>
     <!-- End Content -->
 
     <!-- Full Screen -->
-    <!-- <div class="container col-2 d-flex mt-4 text-center">
+    <div class="container col-2 d-flex mt-4 text-center">
       <div class="circle mx-auto">
-        <i class="fa-solid fa-expand expand" id="fullScreen"></i>
+        <i class="fa-solid fa-expand expand" id="full"></i>
       </div>
       <div class="circle mx-auto">
-        <i class="fa-solid fa-compress expand" id="smallScreen"></i>
+        <i class="fa-solid fa-compress expand"></i>
       </div>
-    </div> -->
+    </div>
     <!-- End Full Screen -->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TimePage'
+  name: 'TimePage',
+  mounted() {
+    function currentTime() {
+      var hours = document.getElementById("hours");
+      var minutes = document.getElementById("minutes");
+      var seconds = document.getElementById("seconds");
+
+      let date = new Date();
+      let hh = date.getHours();
+      let mm = date.getMinutes();
+      let ss = date.getSeconds();
+      
+      hh = hh < 10 ? `0${hh}` : hh;
+      mm = mm < 10 ? `0${mm}` : mm;
+      ss = ss < 10 ? `0${ss}` : ss;
+
+      hours.innerHTML = hh;
+      minutes.innerHTML = mm;
+      seconds.innerHTML = ss;
+    }
+    // currentTime()
+    setInterval(currentTime, 1000)
+  }
 }
-const currentTime = () => {
-  var hours = document.getElementById("hours");
-  var minutes = document.getElementById("minutes");
-  var seconds = document.getElementById("seconds");
-
-  let date = new Date();
-  let hh = date.getHours();
-  let mm = date.getMinutes();
-  let ss = date.getSeconds();
-  
-  hh = hh < 10 ? `0${hh}` : hh;
-  mm = mm < 10 ? `0${mm}` : mm;
-  ss = ss < 10 ? `0${ss}` : ss;
-
-  hours.innerHTML = hh;
-  minutes.innerHTML = mm;
-  seconds.innerHTML = ss;
-  
-  let mySound = new Audio('sound/tick.wav');
-  mySound.play();
-};
-
-currentTime();
-setInterval(currentTime, 1000);
-
 </script>
-
 
 <style>
 .navbar {
@@ -87,7 +83,7 @@ setInterval(currentTime, 1000);
 .main {
   background-image: url("../assets/bg-1.jpg");
   background-size: cover;
-  /* background-position: center; */
+  background-position: top;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -107,7 +103,6 @@ setInterval(currentTime, 1000);
   margin: 0;
 }
 .boxTime {
-  height: 150px;
   backdrop-filter: blur(3px);
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
